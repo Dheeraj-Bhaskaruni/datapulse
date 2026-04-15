@@ -1,0 +1,18 @@
+{
+  "model_type": "MarketPredictorModel",
+  "version": "1.0.0",
+  "feature_names": [
+    "opening_line",
+    "closing_line",
+    "opening_odds",
+    "closing_odds",
+    "market_type_enc"
+  ],
+  "cv_metrics": {
+    "accuracy": 0.48,
+    "log_loss": 0.6903327561001824,
+    "brier_score": 0.24866313692605307,
+    "roc_auc": 0.5647772366522367
+  },
+  "n_samples": 1500
+}

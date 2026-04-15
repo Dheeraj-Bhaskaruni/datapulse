@@ -1,0 +1,65 @@
+app:
+  name: DataPulse
+  version: 1.0.0
+  debug: false
+  log_level: INFO
+
+data:
+  base_path: data
+  sample_path: data/sample
+  processed_path: data/processed
+  feature_store_path: data/features
+
+models:
+  save_path: models
+  player_performance:
+    type: auto
+    n_estimators: 200
+    max_depth: 6
+    learning_rate: 0.1
+  risk_scoring:
+    n_estimators: 150
+    max_depth: 8
+  market_predictor:
+    calibrate: true
+    n_estimators: 200
+  anomaly_detection:
+    contamination: 0.05
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  rate_limit:
+    max_requests: 100
+    window_seconds: 60
+
+monitoring:
+  drift_threshold_psi: 0.1
+  performance_z_threshold: -2
+  check_interval_seconds: 3600
+
+live_feeds:
+  f1:
+    provider: openf1
+    base_url: https://api.openf1.org/v1
+    key_required: false
+    rate_limit: "3 req/s, 30 req/min"
+  cricket:
+    provider: cricketdata
+    base_url: https://api.cricapi.com/v1
+    key_required: true
+    key_env_var: CRICKET_API_KEY
+    signup_url: https://cricketdata.org/
+  nba:
+    provider: balldontlie
+    base_url: https://api.balldontlie.io/v1
+    key_required: true
+    key_env_var: NBA_API_KEY
+    signup_url: https://www.balldontlie.io/
+  odds:
+    provider: the-odds-api
+    base_url: https://api.the-odds-api.com/v4
+    key_required: true
+    key_env_var: ODDS_API_KEY
+    signup_url: https://the-odds-api.com/
+    free_tier: "500 requests/month"

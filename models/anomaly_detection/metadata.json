@@ -1,0 +1,13 @@
+{
+  "model_type": "AnomalyDetectionModel",
+  "version": "1.0.0",
+  "feature_names": [
+    "total_entries",
+    "win_rate",
+    "avg_entry_fee",
+    "total_wagered",
+    "total_won",
+    "net_profit"
+  ],
+  "n_samples": 300
+}

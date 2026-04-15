@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (processed/features are generated, sample is checked in)
+data/processed/*
+data/features/*
+!data/processed/.gitkeep
+!data/features/.gitkeep
+logs/
+
+# Note: models/ is NOT ignored — pre-trained .joblib files ship with the app
+
+# Environment
+.env
+*.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/

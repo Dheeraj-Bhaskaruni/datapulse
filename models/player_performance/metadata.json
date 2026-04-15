@@ -1,0 +1,24 @@
+{
+  "model_type": "PlayerPerformanceModel",
+  "version": "1.0.0",
+  "feature_names": [
+    "games_played",
+    "points_avg",
+    "assists_avg",
+    "rebounds_avg",
+    "steals_avg",
+    "blocks_avg",
+    "turnovers_avg",
+    "fg_pct",
+    "salary",
+    "consistency_score"
+  ],
+  "cv_metrics": {
+    "rmse": 1.8864923048995215,
+    "mae": 1.488468311956532,
+    "r2": 0.9223468136858026,
+    "cv_rmse": 2.2199734673226064,
+    "cv_rmse_std": 0.20188028196349292
+  },
+  "n_samples": 500
+}
