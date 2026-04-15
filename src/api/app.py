@@ -5,19 +5,19 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from src.api.schemas import (
+from src.api.schemas import (  # noqa: E402
     HealthResponse, PredictionRequest, PredictionResponse,
     RiskScoreRequest, RiskScoreResponse, AnalyticsSummaryResponse,
     MarketEvalRequest, MarketEvalResponse, DriftResponse,
 )
-from src.data.ingestion import DataLoader
-from src.analysis.eda import AutoEDA
-from src.pipeline.inference_pipeline import InferencePipeline, ModelNotFoundError
+from src.data.ingestion import DataLoader  # noqa: E402
+from src.analysis.eda import AutoEDA  # noqa: E402
+from src.pipeline.inference_pipeline import InferencePipeline, ModelNotFoundError  # noqa: E402
 
 logger = logging.getLogger(__name__)
 

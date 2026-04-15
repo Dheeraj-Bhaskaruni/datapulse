@@ -3,10 +3,9 @@
 import pandas as pd
 import numpy as np
 import logging
-from typing import Optional, List, Dict, Any
+from typing import Optional, List
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 logger = logging.getLogger(__name__)
 

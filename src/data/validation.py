@@ -1,9 +1,8 @@
 """Data validation module using schema-based validation."""
 
 import pandas as pd
-import numpy as np
 import logging
-from typing import Optional, List, Dict, Any, Set
+from typing import List, Dict, Any
 from dataclasses import dataclass, field
 from enum import Enum
 

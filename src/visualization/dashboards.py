@@ -1,9 +1,8 @@
 """Dashboard layout helpers and composite visualization builders."""
 
 import pandas as pd
-import numpy as np
 import logging
-from typing import Dict, Any, List, Optional
+from typing import Dict
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 

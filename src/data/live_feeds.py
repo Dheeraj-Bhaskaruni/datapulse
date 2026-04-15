@@ -12,9 +12,7 @@ import logging
 import time
 import requests
 import pandas as pd
-import numpy as np
 from typing import Optional, Dict, Any, List
-from datetime import datetime, timedelta
 from functools import wraps
 
 logger = logging.getLogger(__name__)
@@ -67,7 +65,6 @@ class OpenF1Client:
         resp.raise_for_status()
         return resp.json()
 
-
     def get_drivers(self, session_key: Optional[str] = None) -> pd.DataFrame:
         """Get driver information. Pass session_key for a specific session, or 'latest'."""
         params = {}
@@ -83,7 +80,6 @@ class OpenF1Client:
     def get_latest_drivers(self) -> pd.DataFrame:
         """Get drivers from the most recent session."""
         return self.get_drivers(session_key="latest")
-
 
     def get_meetings(self, year: Optional[int] = None) -> pd.DataFrame:
         """Get F1 meetings (race weekends) for a given year."""
@@ -118,7 +114,6 @@ class OpenF1Client:
             return pd.DataFrame()
         return pd.DataFrame(data)
 
-
     def get_laps(self, session_key: str = "latest",
                  driver_number: Optional[int] = None,
                  lap_number: Optional[int] = None) -> pd.DataFrame:
@@ -137,7 +132,6 @@ class OpenF1Client:
         logger.info(f"Fetched {len(df)} lap records from OpenF1")
         return df
 
-
     def get_positions(self, session_key: str = "latest",
                       driver_number: Optional[int] = None) -> pd.DataFrame:
         """Get position data during a session."""
@@ -148,7 +142,6 @@ class OpenF1Client:
         if not data:
             return pd.DataFrame()
         return pd.DataFrame(data)
-
 
     def get_pit_stops(self, session_key: str = "latest",
                       driver_number: Optional[int] = None) -> pd.DataFrame:
@@ -161,7 +154,6 @@ class OpenF1Client:
             return pd.DataFrame()
         return pd.DataFrame(data)
 
-
     def get_stints(self, session_key: str = "latest",
                    driver_number: Optional[int] = None) -> pd.DataFrame:
         """Get stint data (tire compound, stint duration)."""
@@ -173,7 +165,6 @@ class OpenF1Client:
             return pd.DataFrame()
         return pd.DataFrame(data)
 
-
     def get_weather(self, session_key: str = "latest") -> pd.DataFrame:
         """Get weather data for a session."""
         params = {"session_key": session_key}
@@ -182,7 +173,6 @@ class OpenF1Client:
             return pd.DataFrame()
         return pd.DataFrame(data)
 
-
     def get_race_control(self, session_key: str = "latest") -> pd.DataFrame:
         """Get race control messages (flags, penalties, etc.)."""
         params = {"session_key": session_key}
@@ -190,7 +180,6 @@ class OpenF1Client:
         if not data:
             return pd.DataFrame()
         return pd.DataFrame(data)
-
 
     def get_intervals(self, session_key: str = "latest",
                       driver_number: Optional[int] = None) -> pd.DataFrame:
@@ -202,7 +191,6 @@ class OpenF1Client:
         if not data:
             return pd.DataFrame()
         return pd.DataFrame(data)
-
 
     def get_race_summary(self, session_key: str = "latest") -> Dict[str, pd.DataFrame]:
         """Get a complete race summary with drivers, laps, positions, and stints."""
@@ -222,7 +210,6 @@ class OpenF1Client:
         cols = [c for c in ['meeting_name', 'meeting_official_name', 'location',
                             'country_name', 'date_start', 'year'] if c in meetings.columns]
         return meetings[cols] if cols else meetings
-
 
 # CRICKET — CricketData.org API (free tier, key required)
 
@@ -269,7 +256,6 @@ class CricketDataClient:
             raise ValueError(f"API error: {data.get('status', 'unknown')} - {data.get('info', '')}")
         return data
 
-
     def get_current_matches(self) -> pd.DataFrame:
         """Get all current/live cricket matches."""
         data = self._get("currentMatches")
@@ -310,18 +296,15 @@ class CricketDataClient:
             return f"{runs}/{wickets} ({overs} ov)" if runs else ""
         return str(s)
 
-
     def get_match_info(self, match_id: str) -> Dict[str, Any]:
         """Get detailed info for a specific match."""
         data = self._get("match_info", {"id": match_id})
         return data.get("data", {})
 
-
     def get_match_scorecard(self, match_id: str) -> Dict[str, Any]:
         """Get full scorecard for a match."""
         data = self._get("match_scoreCard", {"id": match_id})
         return data.get("data", {})
-
 
     def get_series(self) -> pd.DataFrame:
         """Get list of current/upcoming cricket series."""
@@ -344,7 +327,6 @@ class CricketDataClient:
             })
         return pd.DataFrame(rows)
 
-
     def search_players(self, name: str) -> pd.DataFrame:
         """Search for cricket players by name."""
         data = self._get("players", {"search": name})
@@ -360,12 +342,10 @@ class CricketDataClient:
             })
         return pd.DataFrame(rows)
 
-
     def get_player_stats(self, player_id: str) -> Dict[str, Any]:
         """Get detailed stats for a player."""
         data = self._get("players_info", {"id": player_id})
         return data.get("data", {})
-
 
     def get_match_list(self) -> pd.DataFrame:
         """Get list of upcoming and recent matches."""
@@ -388,7 +368,6 @@ class CricketDataClient:
                 "match_ended": m.get("matchEnded"),
             })
         return pd.DataFrame(rows)
-
 
 # NBA — Ball Don't Lie API (free tier, key required)
 
@@ -432,7 +411,6 @@ class BallDontLieClient:
         resp.raise_for_status()
         return resp.json()
 
-
     def get_teams(self) -> pd.DataFrame:
         """Get all NBA teams."""
         data = self._get("teams")
@@ -440,7 +418,6 @@ class BallDontLieClient:
         if not teams:
             return pd.DataFrame()
         return pd.DataFrame(teams)
-
 
     def get_players(self, search: Optional[str] = None,
                     per_page: int = 25, cursor: Optional[int] = None) -> pd.DataFrame:
@@ -477,7 +454,6 @@ class BallDontLieClient:
             })
         return pd.DataFrame(rows)
 
-
     def get_games(self, dates: Optional[List[str]] = None,
                   seasons: Optional[List[int]] = None,
                   team_ids: Optional[List[int]] = None,
@@ -512,7 +488,6 @@ class BallDontLieClient:
                 "postseason": g.get("postseason"),
             })
         return pd.DataFrame(rows)
-
 
     def get_stats(self, player_ids: Optional[List[int]] = None,
                   game_ids: Optional[List[int]] = None,
@@ -561,7 +536,6 @@ class BallDontLieClient:
             })
         return pd.DataFrame(rows)
 
-
     def get_season_averages(self, season: int, player_ids: List[int]) -> pd.DataFrame:
         """Get season averages for specified players."""
         params = {"season": season, "player_ids[]": player_ids}
@@ -570,7 +544,6 @@ class BallDontLieClient:
         if not averages:
             return pd.DataFrame()
         return pd.DataFrame(averages)
-
 
 # ODDS — The Odds API (free tier, key required)
 
@@ -633,14 +606,12 @@ class OddsAPIClient:
 
         return resp.json()
 
-
     def get_sports(self) -> pd.DataFrame:
         """Get list of available sports."""
         data = self._get("sports")
         if not data:
             return pd.DataFrame()
         return pd.DataFrame(data)
-
 
     def get_odds(self, sport: str = "nba", regions: str = "us",
                  markets: str = "h2h", odds_format: str = "american") -> pd.DataFrame:
@@ -689,10 +660,9 @@ class OddsAPIClient:
         return df
 
     def get_cricket_odds(self, league: str = "cricket_ipl",
-                          markets: str = "h2h") -> pd.DataFrame:
+                         markets: str = "h2h") -> pd.DataFrame:
         """Get cricket betting odds."""
         return self.get_odds(sport=league, markets=markets)
-
 
     def get_scores(self, sport: str = "nba", days_from: int = 1) -> pd.DataFrame:
         """Get recent scores for a sport."""
@@ -720,7 +690,6 @@ class OddsAPIClient:
                         row["away_score"] = score.get("score")
             rows.append(row)
         return pd.DataFrame(rows)
-
 
 # Unified Live Feeds Manager
 

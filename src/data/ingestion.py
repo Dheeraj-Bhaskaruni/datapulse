@@ -1,12 +1,10 @@
 """Data ingestion module for loading data from various sources."""
 
 import pandas as pd
-import numpy as np
 import logging
 import time
-import json
 from pathlib import Path
-from typing import Optional, Dict, Any, List, Union
+from typing import Optional, Dict, List
 from functools import wraps
 
 logger = logging.getLogger(__name__)

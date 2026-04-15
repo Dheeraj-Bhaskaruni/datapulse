@@ -1,11 +1,10 @@
 """Simple feature store for storing and retrieving computed features."""
 
 import pandas as pd
-import numpy as np
 import json
 import logging
 from pathlib import Path
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, Any
 from datetime import datetime
 import hashlib
 

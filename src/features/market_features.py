@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import logging
-from typing import Optional
+
 
 logger = logging.getLogger(__name__)
 
@@ -77,8 +77,8 @@ class MarketFeatureGenerator:
         """Add market efficiency indicators."""
         if 'result' in df.columns and 'implied_probability' in df.columns:
             df['prediction_correct'] = (
-                ((df['implied_probability'] > 0.5) & (df['result'] == 1)) |
-                ((df['implied_probability'] <= 0.5) & (df['result'] == 0))
+                ((df['implied_probability'] > 0.5) & (df['result'] == 1))
+                | ((df['implied_probability'] <= 0.5) & (df['result'] == 0))
             ).astype(int)
             df['calibration_error'] = (df['implied_probability'] - df['result']).abs()
         return df

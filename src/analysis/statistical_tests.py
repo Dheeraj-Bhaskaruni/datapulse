@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import logging
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any
 from scipy import stats
 
 logger = logging.getLogger(__name__)
@@ -56,7 +56,6 @@ class StatisticalTester:
         """Perform one-way ANOVA."""
         stat, p_value = stats.f_oneway(*groups)
         grand_mean = np.concatenate(groups).mean()
-        n_total = sum(len(g) for g in groups)
         ss_between = sum(len(g) * (np.mean(g) - grand_mean)**2 for g in groups)
         ss_total = sum(np.sum((g - grand_mean)**2) for g in groups)
         eta_squared = ss_between / ss_total if ss_total > 0 else 0

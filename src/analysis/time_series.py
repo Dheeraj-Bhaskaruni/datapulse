@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import logging
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional
 from scipy import stats
 
 logger = logging.getLogger(__name__)

@@ -4,7 +4,6 @@ import logging
 from typing import Dict, Any, List, Optional
 
 import numpy as np
-import pandas as pd
 from sklearn.metrics import (
     mean_squared_error,
     r2_score,
@@ -16,8 +15,6 @@ from sklearn.metrics import (
     confusion_matrix,
     classification_report,
 )
-from sklearn.model_selection import cross_val_score
-from sklearn.calibration import calibration_curve
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +61,6 @@ class ModelEvaluator:
             if len(classes) == 2:
                 proba_pos = y_proba[:, 1] if y_proba.ndim == 2 else y_proba
                 result['roc_auc'] = float(roc_auc_score(y_true, proba_pos))
-                fpr_vals = np.linspace(0, 1, 100)
                 from sklearn.metrics import roc_curve
                 fpr, tpr, thresholds = roc_curve(y_true, proba_pos)
                 result['roc_curve'] = {
