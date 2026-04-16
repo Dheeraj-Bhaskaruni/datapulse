@@ -13,6 +13,9 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-ff4b4b)](https://streamlit.io)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104%2B-009688)](https://fastapi.tiangolo.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live-datapulse.lifedblocks.com-2563eb)](https://datapulse.lifedblocks.com)
+
+> **Live at [datapulse.lifedblocks.com](https://datapulse.lifedblocks.com)**
 
 An enterprise-grade, domain-agnostic analytics platform showcasing the complete data science stack — from raw data ingestion through feature engineering, model training, evaluation, monitoring, and multi-deployment production interfaces.
 
@@ -114,7 +117,9 @@ git remote add hf https://huggingface.co/spaces/YOUR_USERNAME/datapulse
 git push hf main
 ```
 
-### cPanel
+### cPanel (Currently deployed)
+Deployed and live at **[datapulse.lifedblocks.com](https://datapulse.lifedblocks.com)** via Passenger WSGI.
+
 1. Upload files, set Python 3.9+, install requirements
 2. Run `make build` to generate data + train models
 3. Point `wsgi.py` as the WSGI entry point
